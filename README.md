@@ -111,7 +111,7 @@ LazyCaptchaConfig(
     siteKey: "YOUR_SITE_KEY",                                   // required
     baseURL: URL(string: "https://captcha.yourdomain.com")!,    // default: https://lazycaptcha.com
     type: .auto,                                                 // .auto, .imagePuzzle, .pow, .behavioral, .textMath
-    theme: .light,                                               // .light or .dark
+    theme: .light,                                               // .light, .dark, or .auto
     originDomain: nil                                            // override Origin header if needed
 )
 ```

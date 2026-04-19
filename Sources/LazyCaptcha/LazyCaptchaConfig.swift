@@ -7,12 +7,15 @@ public enum LazyCaptchaChallengeType: String, Sendable {
     case pow
     case behavioral
     case textMath = "text_math"
+    case pressHold = "press_hold"
+    case rotateAlign = "rotate_align"
 }
 
-/// Widget theme.
+/// Widget theme. Use `.auto` to follow the host OS / parent-site color scheme.
 public enum LazyCaptchaTheme: String, Sendable {
     case light
     case dark
+    case auto
 }
 
 /// Configuration for the CAPTCHA widget.
