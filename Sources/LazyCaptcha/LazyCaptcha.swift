@@ -22,7 +22,7 @@ import Foundation
 public enum LazyCaptcha {
 
     /// The SDK version.
-    public static let version = "0.1.0"
+    public static let version = "2.0.0"
 
     #if canImport(UIKit)
     /// Present the challenge modally from a parent view controller.

@@ -31,7 +31,7 @@ enum LazyCaptchaHTML {
                 }
                 .wrapper {
                     width: 100%;
-                    max-width: 360px;
+                    max-width: 500px;
                 }
             </style>
         </head>
@@ -56,6 +56,8 @@ enum LazyCaptchaHTML {
                                 sitekey: \(jsString(config.siteKey)),
                                 type: \(jsString(config.type.rawValue)),
                                 theme: \(jsString(config.theme.rawValue)),
+                                widget: \(jsString(config.widget.rawValue)),
+                                width: \(jsOptionalString(config.width)),
                                 callback: function(token) { post('verified', { token: token }); },
                                 'expired-callback': function() { post('expired', null); },
                                 'error-callback': function(err) {
@@ -95,5 +97,10 @@ enum LazyCaptchaHTML {
         // Strip the array brackets to get just the quoted string
         let trimmed = json.trimmingCharacters(in: CharacterSet(charactersIn: "[]"))
         return trimmed
+    }
+
+    private static func jsOptionalString(_ value: String?) -> String {
+        guard let value else { return "null" }
+        return jsString(value)
     }
 }

@@ -21,7 +21,7 @@ Or add to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/yourusername/lazycaptcha-ios-sdk", from: "0.1.0")
+    .package(url: "https://github.com/yourusername/lazycaptcha-ios-sdk", from: "2.0.0")
 ]
 ```
 
@@ -110,8 +110,10 @@ LazyCaptchaView(
 LazyCaptchaConfig(
     siteKey: "YOUR_SITE_KEY",                                   // required
     baseURL: URL(string: "https://captcha.yourdomain.com")!,    // default: https://lazycaptcha.com
-    type: .auto,                                                 // .auto, .imagePuzzle, .pow, .behavioral, .textMath
+    type: .auto,                                                 // .auto, .imagePuzzle, .pow, .behavioral, .textMath, .pressHold, .rotateAlign
     theme: .light,                                               // .light, .dark, or .auto
+    widget: .standard,                                           // .standard, .compact, .newsletter, .login
+    width: "420px",                                              // optional, capped at 500px by the hosted widget
     originDomain: nil                                            // override Origin header if needed
 )
 ```
@@ -138,7 +140,7 @@ guard result.success else { throw Abort(.badRequest) }
 
 ## How it works
 
-The SDK presents a `WKWebView` that loads a minimal HTML page. That page loads your LazyCaptcha instance's widget script (`/api/captcha/v1/lazycaptcha.js`) and calls `LazyCaptcha.render()` to mount the challenge. When the user solves it, a JavaScript bridge (`window.webkit.messageHandlers.lazycaptcha`) posts the token back to native code, which resolves the completion handler.
+The SDK presents a `WKWebView` that loads a minimal HTML page. That page loads your LazyCaptcha instance's widget script (`/api/captcha/v1/lazycaptcha.js`) and calls `LazyCaptcha.render()` to mount the challenge. When the user completes the challenge flow, a JavaScript bridge (`window.webkit.messageHandlers.lazycaptcha`) posts the token back to native code, which resolves the completion handler.
 
 The widget script is served from your instance — no extra third-party connections.
 
